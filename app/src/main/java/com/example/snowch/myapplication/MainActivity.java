@@ -1,5 +1,7 @@
 package com.example.snowch.myapplication;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -10,12 +12,9 @@ import com.cloudant.sync.datastore.Datastore;
 import com.cloudant.sync.datastore.DatastoreManager;
 
 import org.restlet.Component;
-import org.restlet.Context;
 import org.restlet.data.Protocol;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -35,13 +34,6 @@ public class MainActivity extends ActionBarActivity {
         Component component = new Component();
         component.getServers().add(Protocol.HTTP, 8182);
         component.getDefaultHost().attachDefault(HttpListener.class);
-
-        Map<String, Object> contextAttr = new HashMap<String, Object>();
-        contextAttr.put("DB_DIR", path.getAbsolutePath());
-        Context context = new Context();
-        context.setAttributes(contextAttr);
-
-        component.setContext(context);
 
         try {
             component.start();
